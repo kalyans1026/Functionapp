@@ -26,6 +26,11 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Adjust the path as per your output directory
     ArtifactName: 'MyArtifacttest'
 
+  variables:
+  azureClientId: 'b040af9a-d476-4145-9483-401e602d8058'
+  azureClientSecret: 'LdP8Q~pgr_4WLNPzvyunYkSB1x4UnBZqJWBJQczn'
+  azureTenantId: 'd5b66d53-29b2-4452-ba0f-f8badcf5782d'
+
 
 # - task: CopyFiles@2
 #   inputs:
@@ -41,11 +46,12 @@ steps:
 #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Adjust the path as per your output directory
 #     ArtifactName: 'MyArtifacttest1'
 
+
 - task: AzurePowerShell@5
   displayName: 'Azure PowerShell Script - Create Resource Group and Function App'
   inputs:
     azureSubscription: 'FUNCTION-APP'
     ScriptType: 'FilePath'
     ScriptPath: 'deploy.ps1'
-    ScriptArguments: '-ResourceGroupName Test-RG -FunctionAppName TestFunctionAPP -Location East US'
+    ScriptArguments: '-ResourceGroupName Test-Rg -FunctionAppName TestFunctionAPP -Location East US -ClientId $(azureClientId) -ClientSecret $(azureClientSecret) -TenantId $(azureTenantId)'
     azurePowerShellVersion: 'LatestVersion'
