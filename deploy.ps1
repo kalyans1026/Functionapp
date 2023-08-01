@@ -20,7 +20,7 @@ $azConnection = Connect-AzAccount -ServicePrincipal -Tenant $TenantId -Credentia
 
 if (!$azConnection) {
     # If the connection attempt failed, try again with the subscription ID
-    Connect-AzAccount -ServicePrincipal -Tenant $TenantId -Credential $psCredential -SubscriptionId $SubscriptionId
+    Connect-AzAccount -ServicePrincipal -Tenant $TenantId -Credential $psCredential -SubscriptionId 3718112c-afe8-4000-8156-64d160081570
 }
 
 # Create Resource Group
