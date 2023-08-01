@@ -26,10 +26,10 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Adjust the path as per your output directory
     ArtifactName: 'MyArtifacttest'
 
-  variables:
-  azureClientId: 'b040af9a-d476-4145-9483-401e602d8058'
-  azureClientSecret: 'LdP8Q~pgr_4WLNPzvyunYkSB1x4UnBZqJWBJQczn'
-  azureTenantId: 'd5b66d53-29b2-4452-ba0f-f8badcf5782d'
+  # variables:
+  # azureClientId: 'b040af9a-d476-4145-9483-401e602d8058'
+  # azureClientSecret: 'LdP8Q~pgr_4WLNPzvyunYkSB1x4UnBZqJWBJQczn'
+  # azureTenantId: 'd5b66d53-29b2-4452-ba0f-f8badcf5782d'
 
 
 # - task: CopyFiles@2
