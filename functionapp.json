@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+    "appName": {
+        "type": "string",
+        "metadata": {
+          "description": "Name of the Azure Function App."
+        }
+      },
+      "runtime": {
+        "type": "string",
+        "defaultValue": "dotnet",
+        "allowedValues": [
+          "dotnet",
+          "node",
+          "python",
+          "java"
+        ],
+        "metadata": {
+          "description": "Runtime for the Function App. Possible values: dotnet, node, python, java."
+        }
+      }
+    },
+    "resources": [
+      {
+        "apiVersion": "2021-02-01",
+        "type": "Microsoft.Web/sites",
+        "name": "[parameters('appName')]",
+        "location": "[resourceGroup().location]",
+        "kind": "functionapp",
+        "properties": {
+          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'YourAppServicePlanName')]",
+          "siteConfig": {
+            "appSettings": [
+              {
+                "name": "FUNCTIONS_WORKER_RUNTIME",
+                "value": "[parameters('runtime')]"
+              },
+              {
+                "name": "AzureWebJobsStorage",
+                "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]"
+              }
+              // Add any other app settings or connection strings as needed
+            ]
+          }
+        }
+      }
+    ],
+    "variables": {
+      "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'storage')]"
+    },
+    "outputs": {
+      "functionAppUrl": {
+        "type": "string",
+        "value": "[reference(parameters('appName')).defaultHostName]"
+      }
+    }
+  }
+  

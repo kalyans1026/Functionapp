@@ -5,14 +5,15 @@ steps:
   inputs:
     version: '3.x' # Replace with the required .NET Core SDK version
     
-# - task: ArchiveFiles@2
-#   displayName: 'Archive files'
-#   inputs:
-#     rootFolderOrFile: 'publish_output/'
-#     includeRootFolder: false
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**/*.json' # Adjust the pattern to match your ARM templates and other files.
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/ARM'
+
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+  displayName: 'Publish Artifact: MyArtifacttest'
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Adjust the path as per your output directory
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/ARM'  # Adjust the path as per your output directory
     ArtifactName: 'MyArtifacttest'
