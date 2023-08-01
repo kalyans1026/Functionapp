@@ -16,7 +16,6 @@ steps:
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: '**/*.json' # Adjust the pattern to match your ARM templates and other files.
-    contents: '**/*.bat'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/ARM'
 
 #publish the artifacts
@@ -26,4 +25,19 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/ARM'  # Adjust the path as per your output directory
     ArtifactName: 'MyArtifacttest'
+
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**/*.bat' # Adjust the pattern to match your ARM templates and other files.
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+#publish the artifacts
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: MyArtifacttest1'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Adjust the path as per your output directory
+    ArtifactName: 'MyArtifacttest1'
 
