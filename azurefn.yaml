@@ -16,6 +16,7 @@ steps:
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: '**/*.json' # Adjust the pattern to match your ARM templates and other files.
+    contents: '**/*.bat'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/ARM'
 
 #publish the artifacts
