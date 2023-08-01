@@ -53,5 +53,7 @@ steps:
     azureSubscription: 'Amantya-LM (3718112c-afe8-4000-8156-64d160081570)'
     ScriptType: 'FilePath'
     ScriptPath: 'deploy.ps1'
-    ScriptArguments: '-ResourceGroupName Test-Rg -FunctionAppName TestFunctionAPP -Location East US -ClientId $(azureClientId) -ClientSecret $(azureClientSecret) -TenantId $(azureTenantId)'
+    ScriptArguments: '-ResourceGroupName MyResourceGroup -FunctionAppName MyFunctionApp -Location East US -ClientId $(azureClientId) -ClientSecret $(azureClientSecret) -TenantId $(azureTenantId) -SubscriptionId 3718112c-afe8-4000-8156-64d160081570'
     azurePowerShellVersion: 'LatestVersion'
+
+
