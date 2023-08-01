@@ -41,3 +41,9 @@ steps:
 #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Adjust the path as per your output directory
 #     ArtifactName: 'MyArtifacttest1'
 
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: 'FUNCTION-APP'
+    ScriptType: 'InlineScript'
+    Inline: 'az deployment group create --resource-group Test-Rg --template-file functionapp.json --parameters functionapp-parameter.json'
+    azurePowerShellVersion: 'LatestVersion'
