@@ -22,4 +22,4 @@ jobs:
       scriptLocation: 'inlineScript'
       inlineScript: |
         az login --service-principal -u $AZURE_CLIENT_ID -p "$AZURE_CLIENT_SECRET" --tenant $AZURE_TENANT_ID
-        az deployment group create --resource-group '<ResourceGroupName>' --template-file 'resourcegroup.bicep' --parameters 'parameters.json'
+        az deployment group create --resource-group '<ResourceGroupName>' --template-file 'rg.bicep' --parameters 'parameters.json'
