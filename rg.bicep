@@ -1,5 +1,5 @@
-param location string = resourceGroup().location
-param rgName string = 'MyResourceGroup'
+param location string
+param rgName string
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: rgName
